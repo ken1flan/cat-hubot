@@ -1,6 +1,8 @@
 FORECAST_BASE_URL = 'http://api.openweathermap.org/data/2.5'
-FORECAST_3HOURS_URL = FORECAST_BASE_URL + '/forecast?q=Tokyo,jp&mode=json&units=metric'
-FORECAST_DAILY_URL = FORECAST_BASE_URL + '/forecast/daily?q=Tokyo,jp&mode=json&units=metric'
+FORECAST_3HOURS_URL = FORECAST_BASE_URL +
+  '/forecast?q=Tokyo,jp&mode=json&units=metric'
+FORECAST_DAILY_URL = FORECAST_BASE_URL +
+  '/forecast/daily?q=Tokyo,jp&mode=json&units=metric'
 WEATHER_LANG_DATA = {
   "200": "小雨と雷雨",
   "201": "雨と雷雨",
@@ -78,15 +80,15 @@ WEATHER_LANG_DATA = {
 }
 
 module.exports = (robot) ->
-  robot.weather_lang_data = WEATHER_LANG_DATA
+  robot.weatherLangData = WEATHER_LANG_DATA
 
-  robot.forecast_3hours_weather = (proc) ->
+  robot.forecast3hoursWeather = (proc) ->
     request = robot.http(FORECAST_3HOURS_URL).get()
     request (err, res, body) ->
       json = JSON.parse body
       proc(json)
 
-  robot.forecast_daily_weather = (proc) ->
+  robot.forecastDailyWeather = (proc) ->
     request = robot.http(FORECAST_DAILY_URL).get()
     request (err, res, body) ->
       json = JSON.parse body

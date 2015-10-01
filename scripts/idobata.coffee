@@ -8,6 +8,6 @@ module.exports = (robot) ->
       "ですにゃ。"
     msg.reply message
 
-  robot.send_room = (msg) ->
+  robot.sendRoom = (msg) ->
     envelope = { message: { data: {room_id: ROOM_ID } } }
     @send envelope, msg
