@@ -1,8 +1,9 @@
+OPENWEATHERMAP_API_KEY = process.env.OPENWEATHERMAP_API_KEY
 FORECAST_BASE_URL = 'http://api.openweathermap.org/data/2.5'
 FORECAST_3HOURS_URL = FORECAST_BASE_URL +
-  '/forecast?q=Tokyo,jp&mode=json&units=metric'
+  '/forecast?q=Tokyo,jp&mode=json&units=metric&APPID=' + OPENWEATHERMAP_API_KEY
 FORECAST_DAILY_URL = FORECAST_BASE_URL +
-  '/forecast/daily?q=Tokyo,jp&mode=json&units=metric'
+  '/forecast/daily?q=Tokyo,jp&mode=json&units=metric&APPID' + OPENWEATHERMAP_API_KEY
 WEATHER_LANG_DATA = {
   "200": "小雨と雷雨",
   "201": "雨と雷雨",
