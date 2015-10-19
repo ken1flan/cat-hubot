@@ -10,7 +10,3 @@ module.exports = (robot) ->
   cronGoodNight = new CronJob '0 0 0 * * *', ->
     robot.sendRoom "おにゃすみにゃさーい"
   cronGoodNight.start()
-  robot.hear /(hello)|(こんにちは)|(こんにちわ)/i, (res) ->
-    res.send "こんにゃちはー"
-  robot.respond /(ありがと)|(サンキュ)|(さんきゅ)/i, (res) ->
-    res.send "うんにゃー"
