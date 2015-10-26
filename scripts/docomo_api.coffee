@@ -26,8 +26,3 @@ module.exports = (robot) ->
       json = JSON.parse body
       robot.brain.set('dialogue_context', json['context'])
       proc(json)
-
-  robot.hear /^((?!天気).)*$/i, (msg) ->
-    robot.responseDialogue msg.match[0], (json) ->
-      response = robot.kitteninze(json['utt'])
-      msg.reply response
