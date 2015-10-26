@@ -26,6 +26,12 @@ module.exports = (robot) ->
             robot.weatherLangData[forecast[1]['weather'][0]['id']] +
             "の予報になってるにゃ。"
           res.reply message
+    else if message.match(/おしえて|教えて/)
+      robot.responseKnowledge message, (json) ->
+        response = robot.kitteninze(json['message']['textForDisplay'])
+        for answer, index in json['answers']
+          response += "\n(" + answer['rank'] + "位)> ((≡ﾟ♀ﾟ≡))つ " + answer['linkUrl']
+        res.reply response
     else
       robot.responseDialogue message, (json) ->
         response = robot.kitteninze(json['utt'])
