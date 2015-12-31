@@ -1,6 +1,13 @@
 CronJob = require('cron').CronJob
 
 module.exports = (robot) ->
+  cronUpdateEveryonesNoticeGems = new CronJob '0 30 7 * * *', ->
+    robot.updateEveryonesNoticeGems (err) ->
+      if err
+        robot.sendRoom "みんなのきづきのbundle updateしようとしたらエラーにゃ。"
+      else
+        robot.sendRoom "みんなのきづきのbundle updateするにゃ。"
+  cronUpdateEveryonesNoticeGems.start()
   cronGoodMorning = new CronJob '0 30 7 * * *', ->
     robot.sendRoom "おはにゃうございますー"
   cronGoodMorning.start()
