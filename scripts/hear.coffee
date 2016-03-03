@@ -1,7 +1,22 @@
 module.exports = (robot) ->
-  robot.hear /^.*$/m, (res) ->
+  robot.hear /@([^+]+)\+\+/m, (res) ->
+    target = res.match[1]
+    robot.add_zabuton(target)
+
+  robot.respond /list zabutons/i, (res) ->
+    zabutons_array = robot.get_zabutons_array_order_by_count()
+    for zabuton in zabutons_array
+      res.reply "#{zabuton['name']}:#{zabuton['count']}"
+
+  robot.respond /reset zabutons/i, (res) ->
+    robot.reset_zabutons()
+    res.reply 'reset zabutons'
+
+  robot.hear /^.*$/mi, (res) ->
     message = res.match[0]
-    if message.match(/天気/)
+    if message.match(/(list zabutons)|(reset zabutons)|(@[^+]+\+\+)/)
+      # skip
+    else if message.match(/天気/)
       if message.match(/明日/)
         robot.forecastDailyWeather (json) ->
           forecast = json['list']
