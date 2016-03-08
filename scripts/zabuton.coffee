@@ -1,28 +1,28 @@
 ZABUTONS_KEY = 'zabutons'
 
 module.exports = (robot) ->
-  robot.get_zabutons = () ->
-    zabutons_json_string = robot.brain.get(ZABUTONS_KEY)
-    zabutons_json_string ||= "{}"
-    return (JSON.parse zabutons_json_string)
+  robot.getZabutons = () ->
+    zabutonsJsonString = robot.brain.get(ZABUTONS_KEY)
+    zabutonsJsonString ||= "{}"
+    return (JSON.parse zabutonsJsonString)
 
-  robot.set_zabutons = (json) ->
-    json_string = JSON.stringify json
-    robot.brain.set(ZABUTONS_KEY, json_string)
+  robot.setZabutons = (json) ->
+    jsonString = JSON.stringify json
+    robot.brain.set(ZABUTONS_KEY, jsonString)
 
-  robot.add_zabuton = (target) ->
-    zabutons = robot.get_zabutons()
+  robot.addZabuton = (target) ->
+    zabutons = robot.getZabutons()
     zabutons[target] ||= 0
     zabutons[target]++
-    robot.set_zabutons(zabutons)
+    robot.setZabutons(zabutons)
 
-  robot.reset_zabutons = () ->
-    robot.set_zabutons({})
+  robot.resetZabutons = () ->
+    robot.setZabutons({})
 
-  robot.get_zabutons_array_order_by_count = () ->
-    zabutons = robot.get_zabutons()
-    zabutons_array = []
+  robot.getZabutonsArrayOrderByCount = () ->
+    zabutons = robot.getZabutons()
+    zabutonsArray = []
     for name, count of zabutons
-      zabutons_array.push({'name' : name, 'count' : count})
-    zabutons_array.sort (a, b) ->
+      zabutonsArray.push({'name' : name, 'count' : count})
+    zabutonsArray.sort (a, b) ->
       b['count'] - a['count']
