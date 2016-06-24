@@ -1,6 +1,12 @@
 CronJob = require('cron').CronJob
 
 module.exports = (robot) ->
+  cronUpdateMaterialBooksGems = new CronJob '0 0 7 * * *', ->
+    robot.updateMaterialBooksGems (err) ->
+      if err
+        robot.sendRoom "ネタ帳のbundle updateしようとしたらエラーにゃ。"
+      else
+        robot.sendRoom "ネタ帳のbundle updateするにゃ。"
   cronUpdateEveryonesNoticeGems = new CronJob '0 30 7 * * *', ->
     robot.updateEveryonesNoticeGems (err) ->
       if err
